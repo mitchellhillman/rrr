@@ -51,7 +51,7 @@ function App() {
         <h1>Arithmetic</h1>
         <p>
           <label htmlFor="amount">Amount</label>
-          <input type="number" id="amount" onChange={handleAmountChange} defaultValue={amount} />
+          <input type="number" id="amount" onChange={handleAmountChange} defaultValue={amount} max="16" />
         </p>
         <p>
           <label htmlFor="difficulty">Difficulty</label>
