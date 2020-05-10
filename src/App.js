@@ -4,8 +4,9 @@ import './App.css';
 
 function App() {
   const [type, setType] = useState('add')
-  const [amount, setAmount] = useState(10)
+  const [amount, setAmount] = useState(20)
   const [difficulty, setDifficulty] = useState(10)
+  const [questionList, setQuestionList] = useState([])
 
   const handleSelectType = (e) => {
     console.log(e)
@@ -14,6 +15,20 @@ function App() {
 
   const handlePrintButtonClick = () => {
     window.print()
+  }
+
+  const handleGenerateButtonClick = (e) => {
+    e.preventDefault()
+    let array = []
+    for (let step = 0; step < amount; step++) {
+      array.push(generateQuestion())
+    }
+    setQuestionList(array)
+  }
+
+  const handleResetButtonClick = (e) => {
+    e.preventDefault()
+    setQuestionList([])
   }
 
   const handleAmountChange = (e) => {
@@ -38,12 +53,7 @@ function App() {
     const first = Math.floor(Math.random() * Math.floor(max))
     const second = Math.floor(Math.random() * Math.floor(max))
     return `${first} ${typeSymbolMap[type]} ${second}`
-  }
-
-  let questionList = [];
-  for (let step = 0; step < amount; step++) {
-    questionList.push(generateQuestion())
-  }
+  }  
 
   return (
     <div className="app">
@@ -51,11 +61,11 @@ function App() {
         <h1>Arithmetic</h1>
         <p>
           <label htmlFor="amount">Amount</label>
-          <input type="number" id="amount" onChange={handleAmountChange} defaultValue={amount} max="16" />
+          <input type="number" id="amount" onChange={handleAmountChange} defaultValue={amount} max="20" />
         </p>
         <p>
           <label htmlFor="difficulty">Difficulty</label>
-          <input type="number" id="difficulty" onChange={handleDifficultyChange} defaultValue={amount} />
+          <input type="number" id="difficulty" onChange={handleDifficultyChange} defaultValue={difficulty} />
         </p>
         <p>
           <label htmlFor="type">Type</label>
@@ -66,20 +76,26 @@ function App() {
             <option value="multiply">{typeSymbolMap['multiply']}</option>      
           </select>
         </p>
-        <p>
-          <button onClick={handlePrintButtonClick}>Print</button>
-        </p>
+        <div>
+          <p><button onClick={handleGenerateButtonClick} disabled={questionList.length > 0}>Generate</button></p>
+          <p><button onClick={handleResetButtonClick} disabled={!questionList.length}>Reset</button></p>
+          <p><button onClick={handlePrintButtonClick} disabled={!questionList.length}>Print</button></p>
+        </div>
       </form>
-      <div className="worksheet">
-        {
-          questionList.map((question) => {
-            return (<p className="question">
-              <span className="formula">{question} = </span>
-              <span className="answer"></span>
-            </p>)
-          })
-        }
-      </div>
+      {
+        questionList.length
+          ? <div className="worksheet">
+              <div className="questionList">
+                {questionList.map((question) => {
+                  return (<p className="question">
+                  <span className="formula">{question} = </span>
+                  <span className="answer"></span>
+                </p>)
+                })}
+              </div>
+            </div>
+          : ''
+      }
     </div>
   );
 }

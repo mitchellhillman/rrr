@@ -28,12 +28,24 @@ label {
 }
 
 .worksheet {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background: white;
+  padding: 4em 6em;
+}
+
+.worksheet:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.questionList {
   font-size: 30px;
   margin-left: -1em;
 }
 
 .question {
-  margin: 0 0 2em 0;
+  margin: 0 0 1em 0;
   padding-left: 1em;
   box-sizing: border-box;
   width: 33.333%;
@@ -64,4 +76,8 @@ label {
   .header {
     display: none;
   }
+  .worksheet {
+    box-shadow: 0 0 0 0;
+    padding: 0;
+  } 
 }
