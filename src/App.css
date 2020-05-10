@@ -1,0 +1,67 @@
+.app {
+  margin: 2em
+}
+
+.header {
+  border-bottom: 1px solid black;
+  margin: 2em 0;
+  padding: 0 0 0.5em 0;
+}
+
+.header:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.header p {
+  float:left;
+  margin-right: 1em;
+}
+
+.header input {
+  width: 3em;
+}
+
+label {
+  margin-right: 10px
+}
+
+.worksheet {
+  font-size: 30px;
+  margin-left: -1em;
+}
+
+.question {
+  margin: 0 0 2em 0;
+  padding-left: 1em;
+  box-sizing: border-box;
+  width: 33.333%;
+  width: 50%;
+  float: left;
+}
+
+.formula {
+  width: 40%;
+  float: left;
+  height: 1.5em;
+  line-height: 2;
+  text-align: right;
+  padding: 0 0.5em 0 0;
+  box-sizing: border-box;
+}
+
+.answer {
+  border: 1px solid black;
+  float: left;
+  height: 2em;
+  width: 60%;
+  line-height: 2em;
+  margin: -1px;
+}
+
+@media print {
+  .header {
+    display: none;
+  }
+}
