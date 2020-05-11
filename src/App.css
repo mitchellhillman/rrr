@@ -27,18 +27,6 @@ label {
   margin-right: 10px
 }
 
-.worksheet {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  background: white;
-  padding: 4em 6em;
-}
-
-.worksheet:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
 .questionList {
   font-size: 30px;
   margin-left: -1em;

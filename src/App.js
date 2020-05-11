@@ -26,11 +26,6 @@ function App() {
     setQuestionList(array)
   }
 
-  const handleResetButtonClick = (e) => {
-    e.preventDefault()
-    setQuestionList([])
-  }
-
   const handleAmountChange = (e) => {
     console.log(e)
     setAmount(e.target.value)
@@ -77,23 +72,20 @@ function App() {
           </select>
         </p>
         <div>
-          <p><button onClick={handleGenerateButtonClick} disabled={questionList.length > 0}>Generate</button></p>
-          <p><button onClick={handleResetButtonClick} disabled={!questionList.length}>Reset</button></p>
+          <p><button onClick={handleGenerateButtonClick}>Generate</button></p>
           <p><button onClick={handlePrintButtonClick} disabled={!questionList.length}>Print</button></p>
         </div>
       </form>
       {
         questionList.length
-          ? <div className="worksheet">
-              <div className="questionList">
-                {questionList.map((question) => {
-                  return (<p className="question">
-                  <span className="formula">{question} = </span>
-                  <span className="answer"></span>
-                </p>)
-                })}
-              </div>
-            </div>
+          ? <div className="questionList">
+            {questionList.map((question) => {
+              return (<p className="question">
+                <span className="formula">{question} = </span>
+                <span className="answer"></span>
+              </p>)
+            })}
+          </div>
           : ''
       }
     </div>
